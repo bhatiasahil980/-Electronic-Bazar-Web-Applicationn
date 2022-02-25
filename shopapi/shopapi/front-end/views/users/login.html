@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectronicBazar | LoginPage</title>
+    <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+</head>
+<body>
+    
+    <div id="container">
+        <div id="login">
+            <div class="container">
+                <h1>Login Form</h1>
+                <div class="row justify-center content" >
+                    <div class="col login-form">
+                        <h2>Log In</h2>
+                        <div class="form">
+                            <input type="email" id="emailid" name="username" placeholder="User Name" required>
+                            <input type="password" id="password" name="pwd" placeholder="User Password" required>
+                            <button onclick="login()">Log In</button>
+                        </div>
+                        <p>
+                            <span>Don't have an account?</span>
+                            <a onclick="register()" >Register here</a>
+                        </p>
+                    </div>
+                    <div class="col img">
+                        <img class="w-100" src="https://png.pngtree.com/png-vector/20191103/ourlarge/pngtree-concept-of-e-commerce-sales-online-shopping-digital-marketing-vector-illustration-png-image_1952808.jpg" alt="online-shop">
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function login() {
+            var http = new XMLHttpRequest();
+            var details = {
+                "email" : document.querySelector("#emailid").value,
+                "pwd" : document.querySelector("#password").value
+            };
+            var data = JSON.stringify(details);
+            var url = "http://localhost:9999/login";
+            http.onreadystatechange = function() {
+                if(http.readyState == 4 && http.status == 200) {
+                    var json = JSON.parse(this.responseText);
+                    localStorage.setItem("token",json.token);
+                    localStorage.setItem("username",json.name);
+                    localStorage.setItem("userid",details.email);
+                    location.href = "../../index.html";
+                }
+            }
+            http.open('post',url,true);
+            http.setRequestHeader('Content-Type','application/json');
+            http.send(data);
+        }
+
+        function register(){
+            location.href = "register.html";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Bazar | HomePage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <script src="assets/javascripts/main.js"></script>
+    <script src="assets/javascripts/header.js"></script>
+    <script src="https://kit.fontawesome.com/b06605e970.js"></script>
+</head>
+<body>
+
+    <div id="container">
+
+        <!-- Topbar -->
+        <div id="topbar">
+            <div class="container">
+                <div class="row justify-between">
+                    <div class="col col-1">
+                        <span>WELCOME TO OUR SHOP!</span>
+                    </div>
+                    <div class="col col-2">
+                        <ul class="row" id="topbar-logged-out">
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-map-marker"></i>
+                                    <span>Select Location</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="views/users/login.html">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>Log In</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="views/users/register.html">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>Register</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="col user-links" id="topbar-logged-in">
+                            <h3 id="user-name"><span><i class="fas fa-caret-square-down"></i></span></h3>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li><a href="views/users/profilepage.html"><span><i class="fas fa-user-circle"></i>&nbsp;&nbsp;</span>My Profile</a></li>
+                                    <li><a href="views/product/orders.html"><span><i class="fas fa-receipt"></i>&nbsp;&nbsp;</span>Orders</a></li>
+                                    <li><a href="#"><span><i class="fas fa-gifts"></i>&nbsp;&nbsp;</span>Coupons</a></li>
+                                    <li><a href="#" onclick="userLogout()"><span><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;</span>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header id="header">
+            <div class="container">
+                <div class="row justify-between align-center">
+                    <div class="col logo">
+                        <h1>
+                            <a href="#" onclick="location.reload()">
+                                <span>E</span>lectronics <span>B</span>azar
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="col search">
+                        <form action="#" >
+                            <input id="search-bar" type="text" placeholder="Search for products, brands and more" value="" autocomplete="off">
+                            <button type="submit" onclick="searchProductsByQuery(document.getElementById('search-bar').value);"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="col user-links">
+                        <ul class="row justify-between">
+                            <li onclick="changeMode()"><i class="far fa-moon"></i></li>
+                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a onclick="gotoCart()"><i class="fas fa-shopping-cart"></i><span>&nbsp;Cart</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- Navbar -->
+        <div id="navbar">
+            <div class="container">
+                <div class="row justify-between align-center">
+                    <div class="all-categories">
+                        <select onchange="searchProductsByQuery(this.value)">
+                            <option>All Categories</option>
+                            <option value="Mobile Phones">Mobile Phones</option>
+                            <option value="laptop">Laptops</option>
+                            <option value="printer">Printers</option>
+                            <option value="televisions">Televisions</option>
+                            <option value="speakers">Speakers</option>
+                            <option value="refrigerator">Refrigerators</option>
+                            <option value="washing Machine">Washing Machines</option>
+                            <option value="Mobile Accessories">Mobile Accessories</option>
+                        </select>
+                    </div>
+                    <nav id="main-navigation">
+                        <input type="checkbox" value="toggle-menu">
+                        <button class="menu-btn">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </button>
+                        <ul class="row justify-between">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="dropdown">
+                                <a href="#">Electronics</a>
+                                <div class="dropdown-menu">
+                                    <h2>Mobiles, Computers</h2>
+                                    <ul>
+                                        <li><a href="#mobilePhones" onclick="setQuery(this)">Mobile Phones</a></li>
+                                        <li><a href="#mobileAccessories" onclick="setQuery(this)">Mobile Accessories</a></li>
+                                        <li><a href="#printers" onclick="setQuery(this)">Printers</a></li>
+                                        <li><a href="#laptops" onclick="setQuery(this)">Laptops</a></li>
+                                        <li><a href="#casesAndCovers">Cases & Covers</a></li>
+                                        <li><a href="#">Screen Protectors</a></li>
+                                        <li><a href="#">Drives & Storages</a></li>
+                                        <li><a href="#">Networking Devices</a></li>
+                                        <li><a href="#">Computer Accessories</a></li>
+                                        <li><a href="#">Tablets</a></li>
+                                        <li><a href="#wearableDevices">Wearable Devices</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Appliances</a>
+                                <div class="dropdown-menu">
+                                    <h2>TV, Appliances, Electronics</h2>
+                                    <ul>
+                                        <li><a href="#" onclick="setQuery(this)">Televisions</a></li>
+                                        <li><a href="#" onclick="setQuery(this)">Washing Machines</a></li>
+                                        <li><a href="#" onclick="setQuery(this)">Refrigerators</a></li>
+                                        <li><a href="#">Home Entertainment Systems</a></li>
+                                        <li><a href="#">Headphones</a></li>
+                                        <li><a href="#" onclick="setQuery(this)">Speakers</a></li>
+                                        <li><a href="#">Audio & Video Accessories</a></li>
+                                        <li><a href="#">Cameras</a></li>
+                                        <li><a href="#">DSLR Cameras</a></li>
+                                        <li><a href="#">Gaming Consoles</a></li>
+                                        <li><a href="#">Air conditioners</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Arrivals</a></li>
+                            <li class="dropdown"><a href="#">Pages</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Banner -->
+        <div id="banner">
+            <div id="slider" class="row">
+                <div class="slide">
+                    <div class="text">
+                        <div class="container">
+                            <p>Get Flat <span>10%</span> Cashback</p>
+                            <h2>Exciting Deals on <br>Televisions</h2>
+                            <a href="#" class="btn-1">SHOP NOW</a>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img class="w-100" alt="banner-image" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/banner1.png">
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="text">
+                        <div class="container">
+                            <p>Top <span>Brands</span> Lowest <span>Prices!</span></p>
+                            <h2>Wide range of<br>Mobile Phones</h2>
+                            <a href="#" class="btn-1">SHOP NOW</a>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img class="w-100" alt="banner-image" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/banner2.png">
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="text">
+                        <div class="container">
+                            <p>Get upto <span>25%</span> Discount</p>
+                            <h2>Smart watches new<br>Collections</h2>
+                            <a href="#" class="btn-1">SHOP NOW</a>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img class="w-100" alt="banner-image" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/banner4.png">
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="text">
+                        <div class="container">
+                            <p>Top <span>Sale</span> Best <span>Deals</span></p>
+                            <h2>Fresh healthy air <br>everywhere</h2>
+                            <a href="#" class="btn-1">SHOP NOW</a>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img class="w-100" alt="banner-image" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/banner3.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content">
+            <div class="container">
+                <h2 class="text-center" id="container-heading">Our <span>New Products</span></h2>
+                <div class="row justify-between">
+                    <aside id="sidebar">
+                        <div class="widgets">
+                            <div class="widget review">
+                                <h3>Customer Review</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="sortByReview(this.getElementsByTagName('span')[0])">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span> 5.0</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="sortByReview(this.getElementsByTagName('span')[0])">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span> 4.0</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="sortByReview(this.getElementsByTagName('span')[0])">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half"></i>
+                                            <span> 3.5</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="sortByReview(this.getElementsByTagName('span')[0])">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span> 3.0</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="sortByReview(this.getElementsByTagName('span')[0])">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half"></i>
+                                            <span> 2.5</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="widget price">
+                                <h3>Price</h3>
+                                <ul>
+                                    <li><a href="#" onclick="sortByPrice(this.getElementsByTagName('span')[0])">Under <i class="fas fa-rupee-sign"></i><span>0,1000</span> 1,000</a></li>
+                                    <li><a href="#" onclick="sortByPrice(this.getElementsByTagName('span')[0])"><i class='fas fa-rupee-sign'></i> 1,000 - <i class='fas fa-rupee-sign'></i><span>1000,5000</span> 5,000</a></li>
+                                    <li><a href="#" onclick="sortByPrice(this.getElementsByTagName('span')[0])"><i class="fas fa-rupee-sign"></i>5,000 - <i class="fas fa-rupee-sign"></i><span>5000,10000</span> 10,000</a></li>
+                                    <li><a href="#" onclick="sortByPrice(this.getElementsByTagName('span')[0])"><i class="fas fa-rupee-sign"></i>10,000 - <i class="fas fa-rupee-sign"></i><span>10000,30000</span>30,000</a></li>
+                                    <li><a href="#" onclick="sortByPrice(this.getElementsByTagName('span')[0])">Over <i class="fas fa-rupee-sign"></i><span>30000,100000</span> 30,000</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget discount">
+                                <h3>Discount</h3>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c1" value="5,10" onclick="sortBydiscount(this.value)">
+                                        <label for="c1">5% or More</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c2" value="10,20" onclick="sortBydiscount(this.value)">
+                                        <label for="c2">10% or More</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c3" value="20,30" onclick="sortBydiscount(this.value)">
+                                        <label for="c3">20% or More</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c4" value="30,50" onclick="sortBydiscount(this.value)">
+                                        <label for="c4">30% or More</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c5" value="50,60" onclick="sortBydiscount(this.value)">
+                                        <label for="c5">50% or More</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="discount-filter" id="c6" value="60,100" onclick="sortBydiscount(this.value)">
+                                        <label for="c6">60% or More</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget electronics">
+                                <h3>Electronics</h3>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="d1" value="-Phones" onclick="setCheckValue(this)">
+                                        <label for="d1">All Mobile Phones</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d2" value="-Accessories" onclick="setCheckValue(this)">
+                                        <label for="d2">Mobile Accessories</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d3" value="-Laptops" onclick="setCheckValue(this)">
+                                        <label for="d3">Laptops</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d4" value="-Printers" onclick="setCheckValue(this)">
+                                        <label for="d4">Printers</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d5" value="-Televisions" onclick="setCheckValue(this)">
+                                        <label for="d5">Televisions</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d6" value="-Speakers" onclick="setCheckValue(this)">
+                                        <label for="d6">Speakers</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d7" value="-Refrigerators" onclick="setCheckValue(this)">
+                                        <label for="d7">Refrigerators</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="d8" value="-WashingMachine" onclick="setCheckValue(this)">
+                                        <label for="d8">Washing Machines</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget cod">
+                                <h3>Cash on Delivery</h3>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="e1" onchange="filterCODProducts()" checked>
+                                        <label for="e1">Eligible for Cash Delivery</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget best-seller">
+                                <h3>Best Seller</h3>
+                               <div class="wrapper">
+                                <ul>
+                                    <li id="bestSeller-template">
+                                        <div class="row justify-between">
+                                            <div class="col product-img">
+                                                <img src="" alt="product-img">
+                                            </div>
+                                            <div class="col product-text" onclick="getdetails(this)">
+                                                <p class="product-id" style="display: none;">card1</p>
+                                                <a href="#">
+                                                    <p>Product Name</p>
+                                                    <b></b>
+                                                    <button class="btn-1">View</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                               </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <main id="main">
+                        <div class="col-1 col" id="product-card-template">
+                            <div class="card">
+                                <div class="image">
+                                    <span></span>
+                                    <a href="#">
+                                        <img src="" alt="product-image">
+                                    </a>
+                                    <div class="quick-view" onclick="getdetails(this)">
+                                        <a href="#" class="btn-1">Quick View</a>
+                                        <p class="product-id" style="display: none;">card1</p>
+                                    </div>
+                                </div>
+                                <div class="desc">
+                                    <p>Redmi 9 Prime</p>
+                                    <p>
+                                        <b>$200.00</b> 
+                                        <span class="text-muted">$280.00</span>
+                                    </p>
+                                    <div class="add-cart" onclick="getSelectedProduct(this)">
+                                        <a href="#" class="btn-1">Add to Cart</a>
+                                        <p class="product-id" style="display: none;"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+                        <section id="section-1" >
+                        </section>
+                        <section id="section-3" >
+                            <div class="row justify-between">
+                                <div class="col-1 col">
+                                    <h2>Exciting Deals</h2>
+                                </div>
+                                <div class="col-2 col">
+                                    <img src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/image1.png" alt="img">
+                                </div>
+                            </div>
+                        </section>
+                        <section id="section-2" >
+                        </section>
+                        <div class="pagination" >
+                            <a href="#" onclick="pageDecrease()">&laquo;</a>
+                            <a href="#content" style="display: none;" id="page-template" onclick="goToPage(this)">0</a>
+                            <div id="pagination-bar">
+                            </div>
+                            <a href="#" onclick="pageIncrease()">&raquo;</a>
+                        </div>
+                        <section id="no-product-found">
+                            <div class="image">
+                                <img alt="result-not-found-image" src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif">
+                                <a class="btn-1" href="#search-bar">Search Again !</a>
+                            </div>
+                            
+                        </section>
+                    </main>
+                </div>
+            </div>
+            <div id="offers">
+                <div class="container">
+                    <div class="row justify-around">
+                        <div class="col offer-1">
+                            <div class="row justify-around">
+                                <div class="col content">
+                                    <p>New Collections, New Trendy</p>
+                                    <h3>Smart Watches</h3>
+                                </div>
+                                <div class="col image">
+                                    <img class="w-100" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/off1.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col offer-2">
+                            <div class="row justify-around">
+                                <div class="col content">
+                                    <p>Top Brands, Lowest Prices</p>
+                                    <h3>Smart Phones</h3>
+                                </div>
+                                <div class="col image">
+                                    <img class="w-100" src="https://demo.w3layouts.com/demos_new/template_demo/11-06-2021/electronics-mart-liberty-demo_Free/1081434887/web/images/off2.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div id="page-description">
+                <div class="container">
+                    <h3>Electronics : </h3>
+                    <p>
+                        If you're considering a new laptop, looking for a powerful new car stereo or shopping 
+                        for a new HDTV, we make it easy to find exactly what you need at a price you can afford. We 
+                        offer Every Day Low Prices on TVs, laptops, cell phones, tablets and iPads, video games, desktop 
+                        computers, cameras and camcorders, audio, video and more.
+                    </p>
+                    <div class="row justify-around footer-grid">
+                        <div class="col col-1">
+                            <div class="row justify-center">
+                                <div class="icon">
+                                    <i class="fas fa-dolly"></i>
+                                </div>
+                                <div class="text">
+                                    <h3>Free Shipping</h3>
+                                    <p>on orders over Rs. 300</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-2">
+                            <div class="row justify-center">
+                                <div class="icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="text">
+                                    <h3>Fast Delivery</h3>
+                                    <p>All over India</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-3">
+                            <div class="row justify-center">
+                                <div class="icon">
+                                    <i class="far fa-thumbs-up"></i>
+                                </div>
+                                <div class="text">
+                                    <h3>Big Choice</h3>
+                                    <p>of Products</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="row justify-around">
+                    <div class="col categories">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Mobile</a></li>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">TV, Audio</a></li>
+                            <li><a href="#">Smart Phones</a></li>
+                            <li><a href="#">Washing Machines</a></li>
+                            <li><a href="#">Refrigerators</a></li>
+                        </ul>
+                    </div>
+                    <div class="col quick-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col connect">
+                        <h3>Get in Touch</h3>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-map-marker"></i> NCU Gurugram</a></li>
+                            <li><a href="#"><i class="fas fa-mobile"></i> 100 100 100</a></li>
+                            <li><a href="#"><i class="fas fa-phone"></i> +11 32 3433</a></li>
+                            <li><a href="#"><i class="far fa-envelope"></i> electronicbazar@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col newsletter">
+                        <h3>News Letter</h3>
+                        <ul>
+                            <li>Free delivery on your first order !</li>
+                            <li>
+                                <input type="text" placeholder="Email">
+                                <button><i class="fas fa-paper-plane"></i></button>
+                            </li>
+                        </ul>
+                        <h4>Follow us on</h4>
+                        <ul class="row follow-icons">
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-square"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row justify-center">
+                    <h3>&copy; Electronics Bazar ( Sahil Pal )</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

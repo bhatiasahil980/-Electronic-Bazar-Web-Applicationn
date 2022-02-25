@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectronicBazar | Registration Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+    <script src="https://kit.fontawesome.com/b06605e970.js"></script>
+</head>
+<body>
+    
+    <div id="container">
+        <div id="login">
+            <div class="container">
+                <h1>Registration Form</h1>
+                <div class="row justify-center content" >
+                    <div class="col img">
+                        <img class="w-100" src="https://jungleworks.com/wp-content/themes/jw/svg-images/banner.svg" alt="online-shop">
+                    </div> 
+                    <div class="col login-form" id="userid" style="display: block;">
+                        <h2>Register Here</h2>
+                        <div>
+                            <input type="email" id="emailid"  placeholder="User Email ID" >
+                            <input type="password" id="password" name="pwd"  pattern="[A-Za-z]{3}" placeholder="User Password" >
+                            <input type="password" id="confirmpassword" name="confimpwd" placeholder="Confirm Password" >
+                            <button onclick="addressInfo()">Next &nbsp;<i class="fas fa-long-arrow-alt-right"></i></button>
+                        </div>
+                        <p>
+                            <span>Already have an account?</span>
+                            <a onclick="login()" >Login</a>
+                        </p>
+                    </div>
+                    <div class="col login-form" id="address" style="display: none;">
+                        <h2>Billing Address</h2>
+                        <input type="text" id="fullname" name="fullname" placeholder="Full name" >
+                        <input type="text" id="adr" name="address" placeholder="Address" >
+                        <input type="text" id="city" name="city" placeholder="City" >
+                        <input type="text" id="state" name="state" placeholder="State">
+                        <input type="text" id="zip" name="zip" placeholder="Pincode">
+                        <div id="shipping-add">
+                            <input type="checkbox" id="same-address" checked="checked" name="sameadr"> 
+                            <label for="sameadr"> delivery address same as billing </label> 
+                        </div>    
+                        <button onclick="register()" id="register-btn">Register</button>        
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        // register user
+        function register() {
+            var billingAdd = [];
+            var delAddress = [];
+            var fullname = document.querySelector('#fullname').value;
+            var address = document.querySelector('#adr').value+", ";
+            address += document.querySelector('#city').value+", ";
+            address += document.querySelector('#state').value+" - ";
+            address += document.querySelector('#zip').value;
+            billingAdd.push(address);
+            if(document.querySelector('#same-address').checked == true){
+                delAddress.push(address);
+            }
+            console.log(fullname+" \n"+address+" \n"+city+" \n"+state+" \n"+zip);
+
+            var registerObj = {
+                "name" : document.querySelector('#fullname').value,
+                "email" : document.querySelector("#emailid").value,
+                "pwd" : document.querySelector("#password").value,
+                "billingAddress" : billingAdd,
+                "delAddress" : delAddress
+                   
+            };
+
+            var data = JSON.stringify(registerObj);
+            console.log(data);
+            var url = "http://localhost:9999/register";
+            var http = new XMLHttpRequest();
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    var response = JSON.parse(this.responseText);
+                    console.log('user added'+response);
+                    alert(' User successfully registered ! ',login());
+               }
+               
+            }
+            http.open('post',url,true);
+            http.setRequestHeader('Content-Type','application/json');
+            http.send(data);
+        }
+
+        function login(){
+            location.href = "login.html";
+        }
+
+        // show address section 
+        function addressInfo(){
+
+            if(document.querySelector("#password").value == document.querySelector("#confirmpassword").value){
+                if(document.querySelector("#password").value != ""){
+                    document.getElementById('userid').style.display = "none";
+                    document.getElementById('address').style.display = "block";
+                    console.log('password matched');
+                }
+                else{
+                    alert('Please enter password !');
+                }
+            }
+            else{
+                alert('Confirm password do not match the entered password');
+            }
+        }
+
+    </script>
+
+</body>
+</html>
